@@ -1,5 +1,5 @@
 // grep -> Globally search a Regular Expression and Print
-use std::env;
+use std::{env, fs};
 
 fn main() {
     // collect method often needs annotation
@@ -13,4 +13,8 @@ fn main() {
     println!("In file {file_path}");
 
     // dbg!(args);
+    // reading contents
+    let contents = fs::read_to_string(file_path).expect("Should have been able to read the file");
+
+    println!("With text:\n{contents}");
 }
