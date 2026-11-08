@@ -1,4 +1,5 @@
 // grep -> Globally search a Regular Expression and Print
+use std::error::Error;
 use std::{env, fs, process};
 
 fn main() {
@@ -16,10 +17,19 @@ fn main() {
 
     // dbg!(args);
     // reading contents
-    let contents =
-        fs::read_to_string(config.file_path).expect("Should have been able to read the file");
+
+    if let Err(e) = run(config) {
+        println!("Application error: {e}");
+        process::exit(1);
+    }
+}
+
+fn run(config: Config) -> Result<(), Box<dyn Error>> {
+    let contents = fs::read_to_string(config.file_path)?;
 
     println!("With text:\n{contents}");
+
+    Ok(())
 }
 
 struct Config {
