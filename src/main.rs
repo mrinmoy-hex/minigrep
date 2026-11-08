@@ -1,4 +1,5 @@
 // grep -> Globally search a Regular Expression and Print
+use minigrep::search;
 use std::error::Error;
 use std::{env, fs, process};
 
